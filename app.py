@@ -11,9 +11,9 @@ def hello_world():
     return render_template("index.html")
 
 
-@app.route("/", methods=["POST"])
+@app.route("/search", methods=["GET"])
 def search():
-    return jsonify(text=request.form.get("text"))
+    return jsonify(text=request.args.get("text"))
 
 
 if __name__ == '__main__':
