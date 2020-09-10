@@ -5,7 +5,7 @@ $("#search-button").click(function () {
 
 function sendSearchQuery(searchText) {
     let searchSettings = getSearchSettings(searchText);
-    $.ajax(window.location.href+"/search", searchSettings);
+    $.ajax(window.location.href+"search", searchSettings);
 
 }
 
