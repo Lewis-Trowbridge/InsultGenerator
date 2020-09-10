@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import jsonify
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ def hello_world():
 
 @app.route("/", methods=["POST"])
 def search():
-    pass
+    return jsonify(text=request.form.get("text"))
 
 
 if __name__ == '__main__':
