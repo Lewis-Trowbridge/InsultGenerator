@@ -13,9 +13,17 @@ function getSearchSettings(searchText) {
     return {
         "data":
             {"text": searchText},
-        "complete": function (jqXHR, statusText) {
-            console.log(jqXHR);
-            console.log(statusText);
+        "complete": placeSearchData
+    }
+}
+
+function placeSearchData(jqXHR, statusText) {
+    let responseJSON = jqXHR.responseJSON;
+    let wordsTotal = responseJSON["words"].length;
+    if (wordsTotal > 0){
+        let wordsDiv = $("#words")
+        for (let wordsCount = 0; wordsCount < wordsTotal; wordsCount++){
+            wordsDiv.append('<div class="row"><p>' + responseJSON["words"][wordsCount] + '</p></div>');
         }
     }
 }
