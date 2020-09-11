@@ -29,7 +29,14 @@ def search():
     }
     search_request = requests.get(oxd_base_url + "/search/thesaurus/" + source_language,
                                   params=params, headers=credentials_json)
-    return jsonify(search_request.json())
+    search_json = search_request.json()
+    return_dict = {
+        "wordsTotal": search_json["metadata"]["total"],
+        "words": []
+    }
+    for word_data in search_json["results"]:
+        return_dict["words"].append(word_data["word"])
+    return jsonify(return_dict)
 
 
 if __name__ == '__main__':
