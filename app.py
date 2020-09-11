@@ -30,12 +30,12 @@ def search():
     search_request = requests.get(oxd_base_url + "/search/thesaurus/" + source_language,
                                   params=params, headers=credentials_json)
     search_json = search_request.json()
-    return_dict = {
-        "wordsTotal": search_json["metadata"]["total"],
-        "words": []
-    }
+    words_list = []
     for word_data in search_json["results"]:
-        return_dict["words"].append(word_data["word"])
+        words_list.append(str.title(word_data["word"]))
+    return_dict = {
+        "words": words_list
+    }
     return jsonify(return_dict)
 
 
