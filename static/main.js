@@ -20,12 +20,16 @@ function getSearchSettings(searchText) {
 function placeSearchData(jqXHR, statusText) {
     let responseJSON = jqXHR.responseJSON;
     let wordsTotal = responseJSON["words"].length;
-    let wordsDiv = $("#words")
+    let wordsDiv = $("#words");
+    let originalWord = responseJSON["original"];
     // Clear the current words
     wordsDiv.html("");
     if (wordsTotal > 0){
         for (let wordsCount = 0; wordsCount < wordsTotal; wordsCount++){
-            wordsDiv.append('<div class="row"><p>' + responseJSON["words"][wordsCount] + '</p></div>');
+            let stringWord = responseJSON["words"][wordsCount];
+            let htmlWord = "<mark>" + stringWord.substring(0, originalWord.length) + "</mark>"
+                + stringWord.substring(originalWord.length);
+            wordsDiv.append('<div class="row"><p>' + htmlWord + '</p></div>');
         }
     }
     else {

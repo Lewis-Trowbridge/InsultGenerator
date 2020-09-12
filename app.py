@@ -34,6 +34,7 @@ def search():
     for word_data in search_json["results"]:
         words_list.append(str.title(word_data["word"]))
     return_dict = {
+        "original": search_text,
         "words": words_list
     }
     return jsonify(return_dict)
