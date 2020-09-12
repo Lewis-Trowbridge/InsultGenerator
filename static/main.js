@@ -27,7 +27,7 @@ function placeSearchData(jqXHR, statusText) {
     if (wordsTotal > 0){
         for (let wordsCount = 0; wordsCount < wordsTotal; wordsCount++){
             let stringWord = responseJSON["words"][wordsCount];
-            let htmlWord = "<mark>" + stringWord.substring(0, originalWord.length) + "</mark>"
+            let htmlWord = '<span class="match-words">' + stringWord.substring(0, originalWord.length) + '</span>'
                 + stringWord.substring(originalWord.length);
             wordsDiv.append('<div class="row"><p>' + htmlWord + '</p></div>');
         }
