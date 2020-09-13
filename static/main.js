@@ -3,6 +3,12 @@ $("#search-button").click(function () {
     sendSearchQuery(searchText);
 })
 
+$("#search-input").on("keydown click", function () {
+    let searchInput = $("#search-input");
+    console.log(searchInput[0].selectionStart);
+    console.log(searchInput[0].selectionEnd);
+})
+
 function sendSearchQuery(searchText) {
     let searchSettings = getSearchSettings(searchText);
     $.ajax(window.location.href+"search", searchSettings);
