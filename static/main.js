@@ -3,10 +3,21 @@ $("#search-button").click(function () {
     sendSearchQuery(searchText);
 })
 
-$("#search-input").on("keydown click", function () {
+$("#search-input").on("input keydown click", function () {
     let searchInput = $("#search-input");
-    console.log(searchInput[0].selectionStart);
-    console.log(searchInput[0].selectionEnd);
+    let startIndex = searchInput[0].selectionStart;
+    let endIndex = searchInput[0].selectionEnd;
+    let wholeText = searchInput.val();
+    // If they are the same, target the word
+    if (startIndex === endIndex){
+        while (wholeText[startIndex-1] !== " " && startIndex > 0){
+            startIndex--;
+        }
+        while (wholeText[endIndex] !== " " && endIndex <= wholeText.length-1){
+            endIndex++;
+        }
+    }
+    $("#search-text-display").text(wholeText.substring(startIndex, endIndex));
 })
 
 function sendSearchQuery(searchText) {
