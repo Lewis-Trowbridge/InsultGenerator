@@ -1,5 +1,5 @@
 $("#search-button").click(function () {
-    let searchText = $("#search-input").val();
+    let searchText = $("#search-text-display").text();
     sendSearchQuery(searchText);
 })
 
